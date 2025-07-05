@@ -62,6 +62,14 @@
   .glass-dark {
     @apply bg-black/10 backdrop-blur-xl border border-white/10 shadow-2xl;
   }
+
+  .glass-card {
+    @apply bg-white/20 backdrop-blur-2xl border border-white/30 shadow-2xl rounded-2xl;
+  }
+
+  .glass-hero {
+    @apply bg-white/10 backdrop-blur-3xl border border-white/20 shadow-3xl rounded-3xl;
+  }
 }
 
 /* Custom scrollbar */
@@ -144,7 +152,7 @@
 
 /* Glass morphism hover effects */
 .glass-hover:hover {
-  @apply bg-white/20 border-white/40 shadow-3xl;
+  @apply bg-white/30 border-white/50 shadow-3xl;
   transform: translateY(-5px) scale(1.02);
 }
 
@@ -265,5 +273,76 @@
   100% {
     transform: translateY(-100px) rotate(360deg);
     opacity: 0;
+  }
+}
+
+/* Logo hover effect */
+.logo-hover {
+  transition: all 0.3s ease;
+  filter: grayscale(0);
+}
+
+.logo-hover:hover {
+  filter: grayscale(0) brightness(1.1) saturate(1.2);
+  transform: scale(1.05);
+}
+
+/* Responsive glass effects */
+@media (max-width: 768px) {
+  .glass-hero {
+    @apply bg-white/15 backdrop-blur-xl border border-white/25 shadow-xl rounded-2xl;
+  }
+  
+  .glass-card {
+    @apply bg-white/25 backdrop-blur-xl border border-white/35 shadow-xl rounded-xl;
+  }
+}
+
+/* Enhanced glass morphism for home page */
+.home-glass-section {
+  @apply bg-white/5 backdrop-blur-2xl border border-white/10 shadow-2xl;
+}
+
+.home-glass-card {
+  @apply bg-white/15 backdrop-blur-xl border border-white/25 shadow-xl rounded-2xl;
+  transition: all 0.3s ease;
+}
+
+.home-glass-card:hover {
+  @apply bg-white/25 border-white/40 shadow-2xl;
+  transform: translateY(-8px) scale(1.02);
+}
+
+/* Glassy navigation */
+.nav-glass {
+  @apply bg-white/90 backdrop-blur-xl border-b border-white/20 shadow-lg;
+}
+
+/* Responsive fixes */
+@media (max-width: 640px) {
+  .section-title {
+    @apply text-2xl md:text-3xl;
+  }
+  
+  .btn-primary, .btn-outline {
+    @apply px-6 py-2 text-sm;
+  }
+  
+  .glass-hero {
+    @apply p-6;
+  }
+  
+  .home-glass-card {
+    @apply p-4;
+  }
+}
+
+@media (max-width: 480px) {
+  .section-title {
+    @apply text-xl md:text-2xl;
+  }
+  
+  .glass-hero {
+    @apply p-4;
   }
 }

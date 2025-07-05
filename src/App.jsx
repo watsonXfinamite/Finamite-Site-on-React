@@ -14,6 +14,9 @@ import TaskManagement from './pages/TaskManagement'
 import InventoryManagement from './pages/InventoryManagement'
 import LeadManagement from './pages/LeadManagement'
 import CRM from './pages/CRM'
+import HRMS from './pages/HRMS'
+import ProjectManagement from './pages/ProjectManagement'
+import CASaaS from './pages/CASaaS'
 import WhatsAppButton from './components/WhatsAppButton'
 
 function App() {
@@ -35,6 +38,9 @@ function App() {
             <Route path="/products/inventory-management" element={<InventoryManagement />} />
             <Route path="/products/lead-management" element={<LeadManagement />} />
             <Route path="/products/crm" element={<CRM />} />
+            <Route path="/products/hrms" element={<HRMS />} />
+            <Route path="/products/project-management" element={<ProjectManagement />} />
+            <Route path="/products/ca-saas" element={<CASaaS />} />
           </Routes>
         </main>
         <Footer />

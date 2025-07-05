@@ -1,8 +1,10 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
 import HeroSection from '../components/HeroSection'
 import AnimatedSection from '../components/AnimatedSection'
+import GlassCard from '../components/GlassCard'
 
 const Home = () => {
   const [statsRef, statsInView] = useInView({
@@ -238,31 +240,62 @@ const Home = () => {
 
   return (
     <div className="pt-20">
-      {/* Hero Section */}
-      <HeroSection
-        title="Partners in SME Business Growth."
-        description="We see ourselves as Partners to SME Business Owners, in which we help them face the Challenges, foresee the challenges, and solve them through the Science of Business. We are on a Mission to Help SME business owners, create a life of Abundant in TIME and MONEY."
-        backgroundImage="https://images.unsplash.com/photo-1560472354-b33ff0c44a43?ixlib=rb-4.0.3"
-        showButtons={true}
-      >
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.8 }}
-          className="mt-8"
-        >
-          <button className="btn-outline">
-            <i className="fas fa-book-open mr-2"></i>
-            Read more
-          </button>
-        </motion.div>
-      </HeroSection>
+      {/* Hero Section with Enhanced Glass Effect */}
+      <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+        <div 
+          className="absolute inset-0 bg-cover bg-center bg-fixed"
+          style={{
+            backgroundImage: 'url(https://images.unsplash.com/photo-1560472354-b33ff0c44a43?ixlib=rb-4.0.3)'
+          }}
+        />
+        <div className="absolute inset-0 bg-gradient-to-br from-primary/80 to-secondary/80" />
 
-      {/* Why SMEs Only Section */}
-      <AnimatedSection className="py-20 bg-white">
-        <div className="container mx-auto px-4">
+        <div className="relative z-10 text-center px-4 max-w-6xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+          >
+            <GlassCard className="glass-hero p-8 md:p-12 bg-white/10 backdrop-blur-3xl border-white/20">
+              <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight">
+                Partners in SME Business Growth
+              </h1>
+              <p className="text-lg md:text-xl text-white/90 mb-8 leading-relaxed max-w-4xl mx-auto">
+                We see ourselves as Partners to SME Business Owners, in which we help them face the Challenges, foresee the challenges, and solve them through the Science of Business. We are on a Mission to Help SME business owners, create a life of Abundant in TIME and MONEY.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <motion.button
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="bg-white text-primary px-8 py-4 rounded-full font-semibold text-lg hover:shadow-xl transition-all duration-300"
+                >
+                  <i className="fas fa-rocket mr-2"></i>
+                  Get Started
+                </motion.button>
+                <motion.button
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="border-2 border-white text-white px-8 py-4 rounded-full font-semibold text-lg hover:bg-white/10 transition-all duration-300"
+                >
+                  <i className="fas fa-book-open mr-2"></i>
+                  Read More
+                </motion.button>
+              </div>
+            </GlassCard>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Why SMEs Only Section with Glass Effect */}
+      <section className="py-20 home-glass-section relative overflow-hidden">
+        <div className="absolute inset-0 opacity-5">
+          <div className="absolute top-20 left-10 w-72 h-72 bg-primary rounded-full blur-3xl"></div>
+          <div className="absolute bottom-20 right-10 w-96 h-96 bg-secondary rounded-full blur-3xl"></div>
+        </div>
+
+        <div className="container mx-auto px-4 relative z-10">
           <div className="text-center mb-16">
-            <h2 className="section-title">Why SMEs Only?</h2>
+            <h2 className="section-title text-white">Why SMEs Only?</h2>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -273,22 +306,22 @@ const Home = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
-                whileHover={{ y: -10 }}
-                className="bg-light-color p-8 rounded-2xl shadow-lg card-hover text-center"
               >
-                <div className="w-16 h-16 bg-gradient-to-br from-primary to-secondary rounded-full flex items-center justify-center mx-auto mb-6">
-                  <i className={`${reason.icon} text-2xl text-white`}></i>
-                </div>
-                <h3 className="text-xl font-semibold text-primary mb-4">{reason.title}</h3>
-                <p className="text-text-secondary leading-relaxed">{reason.description}</p>
+                <GlassCard className="home-glass-card p-8 text-center">
+                  <div className="w-16 h-16 bg-gradient-to-br from-primary to-secondary rounded-full flex items-center justify-center mx-auto mb-6">
+                    <i className={`${reason.icon} text-2xl text-white`}></i>
+                  </div>
+                  <h3 className="text-xl font-semibold text-white mb-4">{reason.title}</h3>
+                  <p className="text-white/80 leading-relaxed">{reason.description}</p>
+                </GlassCard>
               </motion.div>
             ))}
           </div>
         </div>
-      </AnimatedSection>
+      </section>
 
       {/* Key Problems We Solve Section */}
-      <section className="py-20 bg-light-color">
+      <section className="py-20 bg-gradient-to-br from-light-color to-white">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
             <h2 className="section-title">Key Problems We Solve</h2>
@@ -305,14 +338,14 @@ const Home = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: index * 0.05 }}
-                whileHover={{ y: -5 }}
-                className="bg-white p-6 rounded-xl shadow-md card-hover text-center"
               >
-                <div className="w-12 h-12 bg-gradient-to-br from-accent to-secondary rounded-full flex items-center justify-center mx-auto mb-4">
-                  <i className={`${problem.icon} text-lg text-white`}></i>
-                </div>
-                <h3 className="text-lg font-semibold text-primary mb-3">{problem.title}</h3>
-                <p className="text-text-secondary text-sm leading-relaxed">{problem.description}</p>
+                <GlassCard className="p-6 text-center glass-light">
+                  <div className="w-12 h-12 bg-gradient-to-br from-accent to-secondary rounded-full flex items-center justify-center mx-auto mb-4">
+                    <i className={`${problem.icon} text-lg text-white`}></i>
+                  </div>
+                  <h3 className="text-lg font-semibold text-primary mb-3">{problem.title}</h3>
+                  <p className="text-text-secondary text-sm leading-relaxed">{problem.description}</p>
+                </GlassCard>
               </motion.div>
             ))}
           </div>
@@ -334,7 +367,7 @@ const Home = () => {
                 "Founded with a vision to transform businesses, Finamite has grown from a small consultancy to a trusted partner for companies seeking sustainable growth. Our journey is marked by countless success stories of businesses we've helped flourish."
               </p>
               
-              <div className="grid grid-cols-3 gap-6 text-center">
+              <div className="grid grid-cols-3 gap-6 text-center mb-8">
                 <div>
                   <div className="text-3xl font-bold text-accent mb-2">10+</div>
                   <div className="text-text-secondary">Years Experience</div>
@@ -349,13 +382,15 @@ const Home = () => {
                 </div>
               </div>
 
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="btn-primary mt-8"
-              >
-                Learn More About Us
-              </motion.button>
+              <Link to="/about">
+                <motion.button
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="btn-primary"
+                >
+                  Learn More About Us
+                </motion.button>
+              </Link>
             </motion.div>
             
             <motion.div
@@ -375,11 +410,19 @@ const Home = () => {
         </div>
       </AnimatedSection>
 
-      {/* Services Section */}
-      <section className="py-20 gradient-bg text-white">
-        <div className="container mx-auto px-4">
+      {/* Services Section with Glass Effect */}
+      <section className="py-20 relative overflow-hidden">
+        <div 
+          className="absolute inset-0 bg-cover bg-center bg-fixed"
+          style={{
+            backgroundImage: 'url(https://images.unsplash.com/photo-1519389950473-47ba0277781c?ixlib=rb-4.0.3)'
+          }}
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-primary/90 to-secondary/90" />
+
+        <div className="container mx-auto px-4 relative z-10">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold mb-4">Services we Offer</h2>
+            <h2 className="text-4xl font-bold text-white mb-4">Services we Offer</h2>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -390,35 +433,37 @@ const Home = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: index * 0.2 }}
-                whileHover={{ y: -10 }}
-                className="bg-white/10 backdrop-blur-sm p-8 rounded-2xl card-hover"
               >
-                <div className="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mb-6">
-                  <i className={`${service.icon} text-2xl text-white`}></i>
-                </div>
-                <h3 className="text-2xl font-semibold mb-4">{service.title}</h3>
-                <p className="text-white/90 mb-6 leading-relaxed">{service.description}</p>
-                
-                <div className="space-y-2">
-                  {service.features.map((feature, idx) => (
-                    <div key={idx} className="flex items-center text-white/80">
-                      <i className="fas fa-check text-accent mr-3"></i>
-                      {feature}
-                    </div>
-                  ))}
-                </div>
+                <GlassCard className="p-8 bg-white/10 backdrop-blur-xl border-white/20">
+                  <div className="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mb-6">
+                    <i className={`${service.icon} text-2xl text-white`}></i>
+                  </div>
+                  <h3 className="text-2xl font-semibold text-white mb-4">{service.title}</h3>
+                  <p className="text-white/90 mb-6 leading-relaxed">{service.description}</p>
+                  
+                  <div className="space-y-2">
+                    {service.features.map((feature, idx) => (
+                      <div key={idx} className="flex items-center text-white/80">
+                        <i className="fas fa-check text-accent mr-3"></i>
+                        {feature}
+                      </div>
+                    ))}
+                  </div>
+                </GlassCard>
               </motion.div>
             ))}
           </div>
 
           <div className="text-center mt-12">
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="btn-outline"
-            >
-              Learn More About Our Services
-            </motion.button>
+            <Link to="/services">
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="btn-outline"
+              >
+                Learn More About Our Services
+              </motion.button>
+            </Link>
           </div>
         </div>
       </section>
@@ -438,14 +483,14 @@ const Home = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
-                whileHover={{ y: -10 }}
-                className="bg-white p-8 rounded-2xl shadow-lg card-hover text-center"
               >
-                <div className="w-16 h-16 bg-gradient-to-br from-primary to-secondary rounded-full flex items-center justify-center mx-auto mb-6">
-                  <i className={`${feature.icon} text-2xl text-white`}></i>
-                </div>
-                <h3 className="text-xl font-semibold text-primary mb-4">{feature.title}</h3>
-                <p className="text-text-secondary leading-relaxed">{feature.description}</p>
+                <GlassCard className="p-8 text-center glass-light">
+                  <div className="w-16 h-16 bg-gradient-to-br from-primary to-secondary rounded-full flex items-center justify-center mx-auto mb-6">
+                    <i className={`${feature.icon} text-2xl text-white`}></i>
+                  </div>
+                  <h3 className="text-xl font-semibold text-primary mb-4">{feature.title}</h3>
+                  <p className="text-text-secondary leading-relaxed">{feature.description}</p>
+                </GlassCard>
               </motion.div>
             ))}
           </div>
@@ -470,24 +515,24 @@ const Home = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
-                whileHover={{ y: -10 }}
-                className="bg-white rounded-2xl shadow-lg overflow-hidden card-hover"
               >
-                <div className="relative h-48 overflow-hidden">
-                  <img
-                    src={industry.image}
-                    alt={industry.subtitle}
-                    className="w-full h-full object-cover"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
-                  <div className="absolute bottom-4 left-4 text-white">
-                    <h4 className="font-bold text-sm">{industry.title}</h4>
-                    <h3 className="text-lg font-semibold">{industry.subtitle}</h3>
+                <GlassCard className="rounded-2xl overflow-hidden glass-light">
+                  <div className="relative h-48 overflow-hidden">
+                    <img
+                      src={industry.image}
+                      alt={industry.subtitle}
+                      className="w-full h-full object-cover"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
+                    <div className="absolute bottom-4 left-4 text-white">
+                      <h4 className="font-bold text-sm">{industry.title}</h4>
+                      <h3 className="text-lg font-semibold">{industry.subtitle}</h3>
+                    </div>
                   </div>
-                </div>
-                <div className="p-6">
-                  <p className="text-text-secondary leading-relaxed">{industry.description}</p>
-                </div>
+                  <div className="p-6">
+                    <p className="text-text-secondary leading-relaxed">{industry.description}</p>
+                  </div>
+                </GlassCard>
               </motion.div>
             ))}
           </div>
@@ -550,7 +595,7 @@ const Home = () => {
                 <img
                   src={logo}
                   alt="Client Logo"
-                  className="max-w-full max-h-full object-contain filter grayscale hover:grayscale-0 transition-all duration-300"
+                  className="max-w-full max-h-full object-contain filter grayscale hover:grayscale-0 transition-all duration-300 logo-hover"
                 />
               </motion.div>
             ))}
@@ -579,9 +624,16 @@ const Home = () => {
               </div>
               <h3 className="text-xl font-semibold text-primary mb-4">Finamite Solutions LLP</h3>
               <p className="text-text-secondary">
-                HOUSE NO. 3614,<br />
-                SECTOR 32A KIRTI NAGAR LUDHIANA,<br />
-                Punjab, India - 141010
+                <a 
+                  href="https://maps.app.goo.gl/w9JnYnYz8YDWo9NZ9" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="hover:text-accent transition-colors"
+                >
+                  HOUSE NO. 3614,<br />
+                  SECTOR 32A KIRTI NAGAR LUDHIANA,<br />
+                  Punjab, India - 141010
+                </a>
               </p>
             </motion.div>
 

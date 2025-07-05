@@ -1,11 +1,12 @@
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 import { ChevronDown } from 'lucide-react'
 import GlassCard from './GlassCard'
 
 const ProductDropdown = () => {
   const [isOpen, setIsOpen] = useState(false)
+  const navigate = useNavigate()
 
   const products = [
     {
@@ -31,8 +32,42 @@ const ProductDropdown = () => {
       path: '/products/crm',
       icon: 'fas fa-chart-line',
       description: 'Complete customer relationship management'
+    },
+    {
+      name: 'HRMS',
+      path: '/products/hrms',
+      icon: 'fas fa-users-cog',
+      description: 'Human Resource Management System'
+    },
+    {
+      name: 'Project Management',
+      path: '/products/project-management',
+      icon: 'fas fa-project-diagram',
+      description: 'Complete project management solution'
+    },
+    {
+      name: 'CA SaaS',
+      path: '/products/ca-saas',
+      icon: 'fas fa-calculator',
+      description: 'Specialized SaaS for Chartered Accountants'
     }
   ]
+
+  const handleProductClick = (path) => {
+    setIsOpen(false)
+    navigate(path)
+    setTimeout(() => {
+      window.scrollTo(0, 0)
+    }, 100)
+  }
+
+  const handleViewAllClick = () => {
+    setIsOpen(false)
+    navigate('/products')
+    setTimeout(() => {
+      window.scrollTo(0, 0)
+    }, 100)
+  }
 
   return (
     <div className="relative">
@@ -64,7 +99,7 @@ const ProductDropdown = () => {
               className="p-4 bg-white/95 backdrop-blur-xl border-white/30"
               hover={false}
             >
-              <div className="space-y-2">
+              <div className="space-y-2 max-h-96 overflow-y-auto">
                 {products.map((product, index) => (
                   <motion.div
                     key={product.path}
@@ -72,10 +107,9 @@ const ProductDropdown = () => {
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: index * 0.1 }}
                   >
-                    <Link
-                      to={product.path}
-                      onClick={() => setIsOpen(false)}
-                      className="block p-3 rounded-xl hover:bg-white/20 transition-all duration-300 group"
+                    <button
+                      onClick={() => handleProductClick(product.path)}
+                      className="block w-full p-3 rounded-xl hover:bg-white/20 transition-all duration-300 group text-left"
                     >
                       <div className="flex items-start space-x-3">
                         <div className="w-10 h-10 bg-gradient-to-br from-primary to-secondary rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform">
@@ -90,19 +124,18 @@ const ProductDropdown = () => {
                           </p>
                         </div>
                       </div>
-                    </Link>
+                    </button>
                   </motion.div>
                 ))}
               </div>
               
               <div className="mt-4 pt-4 border-t border-white/20">
-                <Link
-                  to="/products"
-                  onClick={() => setIsOpen(false)}
-                  className="block text-center py-2 px-4 bg-gradient-to-r from-primary to-secondary text-white rounded-lg hover:shadow-lg transition-all duration-300"
+                <button
+                  onClick={handleViewAllClick}
+                  className="block w-full text-center py-2 px-4 bg-gradient-to-r from-primary to-secondary text-white rounded-lg hover:shadow-lg transition-all duration-300"
                 >
                   View All Products
-                </Link>
+                </button>
               </div>
             </GlassCard>
           </motion.div>
