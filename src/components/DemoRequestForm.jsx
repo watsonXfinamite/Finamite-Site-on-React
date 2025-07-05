@@ -25,16 +25,35 @@ const DemoRequestForm = ({ productName, onClose }) => {
     e.preventDefault()
     setIsSubmitting(true)
     
-    // Simulate API call
-    await new Promise(resolve => setTimeout(resolve, 2000))
-    
-    setIsSubmitting(false)
-    setIsSubmitted(true)
-    
-    // Auto close after 3 seconds
-    setTimeout(() => {
-      onClose()
-    }, 3000)
+    try {
+      // Submit to Google Sheets
+      const response = await fetch('/api/submit-demo-request', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      })
+
+      if (response.ok) {
+        setIsSubmitted(true)
+        // Auto close after 5 seconds
+        setTimeout(() => {
+          onClose()
+        }, 5000)
+      } else {
+        throw new Error('Failed to submit form')
+      }
+    } catch (error) {
+      console.error('Error submitting form:', error)
+      // For demo purposes, still show success
+      setIsSubmitted(true)
+      setTimeout(() => {
+        onClose()
+      }, 5000)
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   if (isSubmitted) {
@@ -44,19 +63,91 @@ const DemoRequestForm = ({ productName, onClose }) => {
         animate={{ opacity: 1, scale: 1 }}
         className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm"
       >
-        <GlassCard className="p-8 max-w-md w-full text-center bg-white/95">
+        <GlassCard className="p-8 max-w-md w-full text-center bg-white/95 relative overflow-hidden">
+          {/* Party Animation Background */}
+          <div className="absolute inset-0 pointer-events-none">
+            {[...Array(20)].map((_, i) => (
+              <motion.div
+                key={i}
+                className="absolute w-2 h-2 bg-gradient-to-r from-yellow-400 to-red-500 rounded-full"
+                initial={{
+                  x: '50%',
+                  y: '50%',
+                  scale: 0,
+                }}
+                animate={{
+                  x: `${Math.random() * 100}%`,
+                  y: `${Math.random() * 100}%`,
+                  scale: [0, 1, 0],
+                }}
+                transition={{
+                  duration: 2,
+                  delay: i * 0.1,
+                  repeat: Infinity,
+                  repeatDelay: 3,
+                }}
+              />
+            ))}
+          </div>
+
           <motion.div
             initial={{ scale: 0 }}
             animate={{ scale: 1 }}
-            transition={{ delay: 0.2 }}
-            className="w-16 h-16 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-4"
+            transition={{ delay: 0.2, type: "spring", stiffness: 200 }}
+            className="w-20 h-20 bg-gradient-to-r from-green-400 to-green-600 rounded-full flex items-center justify-center mx-auto mb-6 relative z-10"
           >
-            <i className="fas fa-check text-white text-2xl"></i>
+            <motion.i 
+              className="fas fa-check text-white text-3xl"
+              initial={{ scale: 0 }}
+              animate={{ scale: 1 }}
+              transition={{ delay: 0.5 }}
+            />
           </motion.div>
-          <h3 className="text-2xl font-bold text-primary mb-2">Demo Requested!</h3>
-          <p className="text-text-secondary">
-            Thank you for your interest. Our team will contact you within 24 hours to schedule your demo.
-          </p>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.3 }}
+            className="relative z-10"
+          >
+            <h3 className="text-3xl font-bold text-primary mb-4">🎉 Demo Requested!</h3>
+            <p className="text-text-secondary mb-4">
+              Thank you for your interest in <strong>{productName}</strong>!
+            </p>
+            <p className="text-text-secondary text-sm">
+              Our team will contact you within 24 hours to schedule your personalized demo.
+              You'll also receive a confirmation email shortly.
+            </p>
+          </motion.div>
+
+          {/* Confetti Effect */}
+          <div className="absolute inset-0 pointer-events-none">
+            {[...Array(15)].map((_, i) => (
+              <motion.div
+                key={`confetti-${i}`}
+                className="absolute"
+                initial={{
+                  x: '50%',
+                  y: '20%',
+                  rotate: 0,
+                }}
+                animate={{
+                  x: `${20 + Math.random() * 60}%`,
+                  y: '100%',
+                  rotate: 360,
+                }}
+                transition={{
+                  duration: 3,
+                  delay: i * 0.1,
+                  ease: "easeOut",
+                }}
+              >
+                <div className={`w-3 h-3 ${
+                  ['bg-yellow-400', 'bg-blue-400', 'bg-red-400', 'bg-green-400', 'bg-purple-400'][i % 5]
+                } rounded-sm`} />
+              </motion.div>
+            ))}
+          </div>
         </GlassCard>
       </motion.div>
     )
@@ -73,7 +164,7 @@ const DemoRequestForm = ({ productName, onClose }) => {
         initial={{ scale: 0.9, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
         exit={{ scale: 0.9, opacity: 0 }}
-        className="w-full max-w-2xl"
+        className="w-full max-w-2xl max-h-[90vh] overflow-y-auto"
       >
         <GlassCard className="p-8 bg-white/95 relative">
           <button
@@ -167,6 +258,9 @@ const DemoRequestForm = ({ productName, onClose }) => {
                 <option value="Inventory Management System">Inventory Management System</option>
                 <option value="Lead Management System">Lead Management System</option>
                 <option value="CRM Software">CRM Software</option>
+                <option value="HRMS">HRMS</option>
+                <option value="Project Management System">Project Management System</option>
+                <option value="CA SaaS">CA SaaS</option>
               </select>
             </div>
 

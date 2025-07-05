@@ -38,6 +38,30 @@ const Products = () => {
       description: 'Complete customer relationship management solution for growing businesses.',
       features: ['Customer Analytics', 'Sales Pipeline', 'Communication Hub', 'Reporting Dashboard'],
       image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3'
+    },
+    {
+      name: 'HRMS',
+      path: '/products/hrms',
+      icon: 'fas fa-users-cog',
+      description: 'Human Resource Management System with eSSL integration and automated payroll.',
+      features: ['eSSL Integration', 'Auto Salary Calculation', 'Leave Management', 'Employee Self-Service'],
+      image: 'https://images.unsplash.com/photo-1521791136064-7986c2920216?ixlib=rb-4.0.3'
+    },
+    {
+      name: 'Project Management System',
+      path: '/products/project-management',
+      icon: 'fas fa-project-diagram',
+      description: 'Complete project management solution with dashboard and resource planning.',
+      features: ['Dashboard Overview', 'Task Management', 'Resource Planning', 'Budget Tracking'],
+      image: 'https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3'
+    },
+    {
+      name: 'CA SaaS',
+      path: '/products/ca-saas',
+      icon: 'fas fa-calculator',
+      description: 'Specialized SaaS solution for Chartered Accountants with client management.',
+      features: ['Client Walk-In', 'Work Order Management', 'Document Request', 'Compliance Tracking'],
+      image: 'https://images.unsplash.com/photo-1554224155-6726b3ff858f?ixlib=rb-4.0.3'
     }
   ]
 
@@ -109,7 +133,7 @@ const Products = () => {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
             {products.map((product, index) => (
               <motion.div
                 key={product.path}
@@ -117,8 +141,9 @@ const Products = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
+                className="h-full"
               >
-                <GlassCard className="h-full bg-white/60 backdrop-blur-xl border-white/30 overflow-hidden">
+                <GlassCard className="h-full bg-white/60 backdrop-blur-xl border-white/30 overflow-hidden flex flex-col">
                   <div className="relative h-48 overflow-hidden">
                     <img
                       src={product.image}
@@ -133,17 +158,17 @@ const Products = () => {
                     </div>
                   </div>
 
-                  <div className="p-8">
-                    <h3 className="text-2xl font-bold text-primary mb-4">
+                  <div className="p-6 flex-1 flex flex-col">
+                    <h3 className="text-xl font-bold text-primary mb-3">
                       {product.name}
                     </h3>
-                    <p className="text-text-secondary mb-6 leading-relaxed">
+                    <p className="text-text-secondary mb-4 leading-relaxed flex-1">
                       {product.description}
                     </p>
 
-                    <div className="space-y-2 mb-8">
+                    <div className="space-y-2 mb-6">
                       {product.features.map((feature, idx) => (
-                        <div key={idx} className="flex items-center text-text-secondary">
+                        <div key={idx} className="flex items-center text-text-secondary text-sm">
                           <i className="fas fa-check text-accent mr-3"></i>
                           {feature}
                         </div>
@@ -152,7 +177,7 @@ const Products = () => {
 
                     <Link
                       to={product.path}
-                      className="block w-full bg-gradient-to-r from-primary to-secondary text-white py-3 px-6 rounded-xl font-semibold text-center hover:shadow-xl transition-all duration-300 transform hover:scale-105"
+                      className="block w-full bg-gradient-to-r from-primary to-secondary text-white py-3 px-6 rounded-xl font-semibold text-center hover:shadow-xl transition-all duration-300 transform hover:scale-105 mt-auto"
                     >
                       Learn More
                       <i className="fas fa-arrow-right ml-2"></i>

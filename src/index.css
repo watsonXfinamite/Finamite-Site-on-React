@@ -23,11 +23,11 @@
 
 @layer components {
   .btn-primary {
-    @apply bg-primary hover:bg-secondary text-white px-8 py-3 rounded-full font-medium transition-all duration-300 transform hover:scale-105 hover:shadow-lg;
+    @apply bg-gradient-to-r from-primary to-secondary hover:from-secondary hover:to-primary text-white px-8 py-3 rounded-full font-medium transition-all duration-300 transform hover:scale-105 hover:shadow-lg;
   }
 
   .btn-outline {
-    @apply border-2 border-white text-white hover:bg-white hover:text-primary px-8 py-3 rounded-full font-medium transition-all duration-300 transform hover:scale-105;
+    @apply border-2 border-white text-white hover:bg-white hover:text-primary px-8 py-4 rounded-full font-medium transition-all duration-300 transform hover:scale-105;
   }
 
   .section-title {
@@ -122,7 +122,7 @@
   background: linear-gradient(135deg, rgba(2, 33, 64, 0.8), rgba(0, 83, 67, 0.8));
 }
 
-/* Floating animation */
+/* Floating animation - removed for Arsh image */
 @keyframes float {
   0%, 100% {
     transform: translateY(0px);
@@ -300,7 +300,7 @@
 
 /* Enhanced glass morphism for home page */
 .home-glass-section {
-  @apply bg-white/5 backdrop-blur-2xl border border-white/10 shadow-2xl;
+  @apply bg-gradient-to-br from-primary/20 to-secondary/20 backdrop-blur-2xl border border-white/10 shadow-2xl;
 }
 
 .home-glass-card {
@@ -345,4 +345,50 @@
   .glass-hero {
     @apply p-4;
   }
+}
+
+/* Consistent card heights */
+.equal-height-card {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.equal-height-card .card-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.equal-height-card .card-footer {
+  margin-top: auto;
+}
+
+/* Color consistency for product pages */
+.product-gradient {
+  background: linear-gradient(135deg, #022140 0%, #005343 100%);
+}
+
+.product-accent {
+  color: #1abc9c;
+}
+
+.product-card {
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+/* Smooth transitions */
+* {
+  transition: color 0.3s ease, background-color 0.3s ease, border-color 0.3s ease, transform 0.3s ease;
+}
+
+/* Remove unnecessary animations from forms */
+.form-input {
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.form-input:focus {
+  animation: none;
 }

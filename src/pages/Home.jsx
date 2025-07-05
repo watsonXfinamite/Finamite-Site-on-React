@@ -306,8 +306,9 @@ const Home = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
+                className="equal-height-card"
               >
-                <GlassCard className="home-glass-card p-8 text-center">
+                <GlassCard className="home-glass-card p-8 text-center h-full">
                   <div className="w-16 h-16 bg-gradient-to-br from-primary to-secondary rounded-full flex items-center justify-center mx-auto mb-6">
                     <i className={`${reason.icon} text-2xl text-white`}></i>
                   </div>
@@ -338,8 +339,9 @@ const Home = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: index * 0.05 }}
+                className="equal-height-card"
               >
-                <GlassCard className="p-6 text-center glass-light">
+                <GlassCard className="p-6 text-center glass-light h-full">
                   <div className="w-12 h-12 bg-gradient-to-br from-accent to-secondary rounded-full flex items-center justify-center mx-auto mb-4">
                     <i className={`${problem.icon} text-lg text-white`}></i>
                   </div>
@@ -403,7 +405,7 @@ const Home = () => {
               <img
                 src="/img/arshsir's image.png"
                 alt="Arsh Gaur - Founder"
-                className="rounded-2xl shadow-2xl w-full max-w-md mx-auto float-animation"
+                className="rounded-2xl shadow-2xl w-full max-w-md mx-auto"
               />
             </motion.div>
           </div>
@@ -433,8 +435,9 @@ const Home = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: index * 0.2 }}
+                className="equal-height-card"
               >
-                <GlassCard className="p-8 bg-white/10 backdrop-blur-xl border-white/20">
+                <GlassCard className="p-8 bg-white/10 backdrop-blur-xl border-white/20 h-full">
                   <div className="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mb-6">
                     <i className={`${service.icon} text-2xl text-white`}></i>
                   </div>
@@ -483,8 +486,9 @@ const Home = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
+                className="equal-height-card"
               >
-                <GlassCard className="p-8 text-center glass-light">
+                <GlassCard className="p-8 text-center glass-light h-full">
                   <div className="w-16 h-16 bg-gradient-to-br from-primary to-secondary rounded-full flex items-center justify-center mx-auto mb-6">
                     <i className={`${feature.icon} text-2xl text-white`}></i>
                   </div>
@@ -515,8 +519,9 @@ const Home = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
+                className="equal-height-card"
               >
-                <GlassCard className="rounded-2xl overflow-hidden glass-light">
+                <GlassCard className="rounded-2xl overflow-hidden glass-light h-full">
                   <div className="relative h-48 overflow-hidden">
                     <img
                       src={industry.image}
@@ -617,12 +622,21 @@ const Home = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
-              className="text-center"
+              className="text-center equal-height-card"
             >
               <div className="w-16 h-16 bg-gradient-to-br from-primary to-secondary rounded-full flex items-center justify-center mx-auto mb-6">
                 <i className="fas fa-map-marker-alt text-2xl text-white"></i>
               </div>
-              <h3 className="text-xl font-semibold text-primary mb-4">Finamite Solutions LLP</h3>
+              <h3 className="text-xl font-semibold text-primary mb-4">
+                <a 
+                  href="https://maps.app.goo.gl/w9JnYnYz8YDWo9NZ9" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="hover:text-secondary transition-colors"
+                >
+                  Finamite Solutions LLP
+                </a>
+              </h3>
               <p className="text-text-secondary">
                 <a 
                   href="https://maps.app.goo.gl/w9JnYnYz8YDWo9NZ9" 
@@ -642,7 +656,7 @@ const Home = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.1 }}
-              className="text-center"
+              className="text-center equal-height-card"
             >
               <div className="w-16 h-16 bg-gradient-to-br from-primary to-secondary rounded-full flex items-center justify-center mx-auto mb-6">
                 <i className="fas fa-phone text-2xl text-white"></i>
@@ -660,7 +674,7 @@ const Home = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.2 }}
-              className="text-center"
+              className="text-center equal-height-card"
             >
               <div className="w-16 h-16 bg-gradient-to-br from-primary to-secondary rounded-full flex items-center justify-center mx-auto mb-6">
                 <i className="fas fa-envelope text-2xl text-white"></i>

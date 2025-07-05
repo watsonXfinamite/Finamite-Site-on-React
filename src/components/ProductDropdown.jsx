@@ -93,10 +93,10 @@ const ProductDropdown = () => {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: -10, scale: 0.95 }}
             transition={{ duration: 0.2 }}
-            className="absolute top-full left-0 mt-2 w-80 z-50"
+            className="absolute top-full left-0 mt-2 w-96 z-50 max-w-screen-sm"
           >
             <GlassCard 
-              className="p-4 bg-white/95 backdrop-blur-xl border-white/30"
+              className="p-4 bg-white/95 backdrop-blur-xl border-white/30 shadow-2xl"
               hover={false}
             >
               <div className="space-y-2 max-h-96 overflow-y-auto">
@@ -105,21 +105,21 @@ const ProductDropdown = () => {
                     key={product.path}
                     initial={{ opacity: 0, x: -20 }}
                     animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: index * 0.1 }}
+                    transition={{ delay: index * 0.05 }}
                   >
                     <button
                       onClick={() => handleProductClick(product.path)}
-                      className="block w-full p-3 rounded-xl hover:bg-white/20 transition-all duration-300 group text-left"
+                      className="block w-full p-3 rounded-xl hover:bg-gradient-to-r hover:from-primary/10 hover:to-secondary/10 transition-all duration-300 group text-left"
                     >
                       <div className="flex items-start space-x-3">
-                        <div className="w-10 h-10 bg-gradient-to-br from-primary to-secondary rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform">
+                        <div className="w-10 h-10 bg-gradient-to-br from-primary to-secondary rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform flex-shrink-0">
                           <i className={`${product.icon} text-white text-sm`}></i>
                         </div>
-                        <div className="flex-1">
-                          <h3 className="font-semibold text-primary group-hover:text-secondary transition-colors">
+                        <div className="flex-1 min-w-0">
+                          <h3 className="font-semibold text-primary group-hover:text-secondary transition-colors text-sm leading-tight">
                             {product.name}
                           </h3>
-                          <p className="text-sm text-text-secondary">
+                          <p className="text-xs text-text-secondary mt-1 leading-tight">
                             {product.description}
                           </p>
                         </div>
@@ -132,7 +132,7 @@ const ProductDropdown = () => {
               <div className="mt-4 pt-4 border-t border-white/20">
                 <button
                   onClick={handleViewAllClick}
-                  className="block w-full text-center py-2 px-4 bg-gradient-to-r from-primary to-secondary text-white rounded-lg hover:shadow-lg transition-all duration-300"
+                  className="block w-full text-center py-2 px-4 bg-gradient-to-r from-primary to-secondary text-white rounded-lg hover:shadow-lg transition-all duration-300 text-sm font-medium"
                 >
                   View All Products
                 </button>
